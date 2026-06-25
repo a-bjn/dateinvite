@@ -10,10 +10,10 @@ interface DateCalendarProps {
   onContinue: () => void;
 }
 
-const WEEKDAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+const WEEKDAYS = ["Dum", "Lun", "Mar", "Mie", "Joi", "Vin", "Sâm"];
 const MONTHS = [
-  "January", "February", "March", "April", "May", "June",
-  "July", "August", "September", "October", "November", "December",
+  "Ianuarie", "Februarie", "Martie", "Aprilie", "Mai", "Iunie",
+  "Iulie", "August", "Septembrie", "Octombrie", "Noiembrie", "Decembrie",
 ];
 
 function isSameDay(a: Date, b: Date) {
@@ -72,13 +72,13 @@ export default function DateCalendar({
     <div className="w-full max-w-md animate-fade-in-up relative z-30">
       <div className="text-center mb-8">
         <p className="text-sm uppercase tracking-[0.25em] mb-2" style={{ color: "#b07050" }}>
-          Step 1 of 2
+          Pasul 1 din 2
         </p>
         <h2 className="text-3xl md:text-4xl font-light mb-2" style={{ color: "#7a4030" }}>
-          Pick a day 🌸
+          Alege o zi 🌸
         </h2>
         <p className="text-base font-light" style={{ color: "#a06050" }}>
-          Choose a date and time that works for you
+          Alege o dată și o oră care ți se potrivesc
         </p>
       </div>
 
@@ -89,7 +89,7 @@ export default function DateCalendar({
             type="button"
             onClick={prevMonth}
             className="calendar-nav-btn"
-            aria-label="Previous month"
+            aria-label="Luna anterioară"
           >
             ‹
           </button>
@@ -100,7 +100,7 @@ export default function DateCalendar({
             type="button"
             onClick={nextMonth}
             className="calendar-nav-btn"
-            aria-label="Next month"
+            aria-label="Luna următoare"
           >
             ›
           </button>
@@ -148,10 +148,10 @@ export default function DateCalendar({
             className="text-xs uppercase tracking-widest mb-3 text-center"
             style={{ color: "#b07050" }}
           >
-            Pick a time
+            Alege ora
           </p>
           <div className="flex flex-wrap justify-center gap-2">
-            {["6:00 PM", "6:30 PM", "7:00 PM", "7:30 PM", "8:00 PM"].map((time) => (
+            {["18:00", "18:30", "19:00", "19:30", "20:00"].map((time) => (
               <button
                 key={time}
                 type="button"
@@ -171,7 +171,7 @@ export default function DateCalendar({
         onClick={onContinue}
         className="btn-yes text-white rounded-full px-12 py-4 text-lg font-medium tracking-wide w-full max-w-xs mx-auto block mt-8 disabled:opacity-40 disabled:cursor-not-allowed disabled:transform-none"
       >
-        Continue 🌷
+        Continuă 🌷
       </button>
     </div>
   );

@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "A Special Invitation 🌸",
-  description: "Something beautiful just for you",
+  title: "O invitație specială 🌸",
+  description: "Ceva frumos, doar pentru tine",
 };
 
 export default function RootLayout({
@@ -12,7 +12,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="ro">
       <body className="antialiased">
         {children}
       </body>

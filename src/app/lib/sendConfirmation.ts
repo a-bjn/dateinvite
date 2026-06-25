@@ -13,7 +13,7 @@ export async function sendConfirmation(data: ConfirmationData): Promise<void> {
     return;
   }
 
-  const sentAt = new Date().toLocaleString("en-US", {
+  const sentAt = new Date().toLocaleString("ro-RO", {
     weekday: "long",
     year: "numeric",
     month: "long",
@@ -26,18 +26,18 @@ export async function sendConfirmation(data: ConfirmationData): Promise<void> {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
-      username: "Date Invite 🌸",
+      username: "Invitație la întâlnire 🌸",
       avatar_url: "https://em-content.zobj.net/source/twitter/376/cherry-blossom_1f338.png",
       embeds: [
         {
-          title: "She said YES! 🌹",
+          title: "A spus DA! 🌹",
           color: 0xc07840,
           fields: [
-            { name: "📅 Date", value: data.date, inline: true },
-            { name: "⏰ Time", value: data.time, inline: true },
-            { name: "📍 Place", value: `**${data.place}**\n${data.placeTagline}`, inline: false },
+            { name: "📅 Data", value: data.date, inline: true },
+            { name: "⏰ Ora", value: data.time, inline: true },
+            { name: "📍 Loc", value: `**${data.place}**\n${data.placeTagline}`, inline: false },
           ],
-          footer: { text: `Confirmed on ${sentAt}` },
+          footer: { text: `Confirmat pe ${sentAt}` },
           thumbnail: {
             url: "https://em-content.zobj.net/source/twitter/376/bouquet_1f490.png",
           },

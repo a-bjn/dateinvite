@@ -33,7 +33,7 @@ interface Petal {
 }
 
 function formatDate(date: Date) {
-  return date.toLocaleDateString("en-US", {
+  return date.toLocaleDateString("ro-RO", {
     weekday: "long",
     month: "long",
     day: "numeric",
@@ -116,13 +116,13 @@ export default function DateInvite() {
   };
 
   const noMessages = [
-    "Are you sure? 🥺",
-    "Really really sure? 🌸",
-    "Think again... 🌷",
-    "One more chance! 🌺",
-    "Pretty please? 🌹",
-    "I promise it'll be fun! 💐",
-    "Last chance! 🌸",
+    "Ești sigură? 🥺",
+    "Chiar chiar sigură? 🌸",
+    "Mai gândește-te... 🌷",
+    "Încă o șansă! 🌺",
+    "Te rog frumos? 🌹",
+    "Promit că o să fie frumos! 💐",
+    "Ultima șansă! 🌸",
   ];
 
   const showInviteLayout = step === "invite";
@@ -200,13 +200,13 @@ export default function DateInvite() {
                 className="text-5xl md:text-7xl font-light tracking-wide mb-4"
                 style={{ color: "#7a4030", letterSpacing: "0.04em" }}
               >
-                Hey, <span className="shimmer-text font-normal">you</span>
+                Hei, <span className="shimmer-text font-normal">tu</span>
               </h1>
               <p
                 className="text-xl md:text-2xl font-light"
                 style={{ color: "#a06050", letterSpacing: "0.05em" }}
               >
-                I have something to ask you&nbsp;🌷
+                Am ceva să te întreb&nbsp;🌷
               </p>
             </section>
 
@@ -238,15 +238,14 @@ export default function DateInvite() {
                   className="text-lg font-light mb-8"
                   style={{ color: "#8a5040", lineHeight: 1.8 }}
                 >
-                  I&apos;ve been thinking about this for a while, and I&apos;d
-                  really love to spend an evening with you — just the two of us.
+                  Mă bucur că imaginația mea a devenit realitate 🌸
                 </p>
 
                 <div className="flex flex-col gap-5">
                   {[
-                    { icon: "🌺", label: "When", value: "You pick the day" },
-                    { icon: "🌸", label: "Where", value: "You pick the place" },
-                    { icon: "🌼", label: "Dress", value: "Something that makes you smile" },
+                    { icon: "🌺", label: "Când", value: "Tu alegi ziua" },
+                    { icon: "🌸", label: "Unde", value: "Tu alegi locul" },
+                    { icon: "🌼", label: "Ținută", value: "Ceva care te face să zâmbești" },
                   ].map((item) => (
                     <div
                       key={item.label}
@@ -287,7 +286,7 @@ export default function DateInvite() {
                 style={{ color: "#7a4030" }}
               >
                 {noCount === 0
-                  ? "So… will you go on a date with me? 🌸"
+                  ? "Deci… vrei să ieșim la o întâlnire? 🌸"
                   : noMessages[Math.min(noCount - 1, noMessages.length - 1)]}
               </p>
 
@@ -296,7 +295,7 @@ export default function DateInvite() {
                   onClick={handleYes}
                   className="btn-yes text-white rounded-full px-12 py-4 text-lg font-medium tracking-wide w-52"
                 >
-                  Yes! 🌸
+                  Da! 🌸
                 </button>
 
                 <button
@@ -310,7 +309,7 @@ export default function DateInvite() {
                     cursor: "default",
                   }}
                 >
-                  No thanks
+                  Nu, mulțumesc
                 </button>
               </div>
             </section>
@@ -386,10 +385,10 @@ export default function DateInvite() {
               🌹
             </div>
             <h2 className="text-4xl font-light mb-3" style={{ color: "#7a3030" }}>
-              It&apos;s a date!
+              E o întâlnire!
             </h2>
             <p className="text-lg font-light mb-8" style={{ color: "#a06050" }}>
-              I&apos;m so excited — see you soon 🌸
+              Sunt super încântat — ne vedem curând 🌸
             </p>
 
             <div className="glass-card rounded-3xl px-8 py-8 text-left space-y-5">
@@ -397,7 +396,7 @@ export default function DateInvite() {
                 <span className="text-2xl">📅</span>
                 <div>
                   <p className="text-xs uppercase tracking-widest mb-1" style={{ color: "#b07050" }}>
-                    When
+                    Când
                   </p>
                   <p className="text-sm font-medium" style={{ color: "#6a3828" }}>
                     {formatDate(selectedDate)}
@@ -414,7 +413,7 @@ export default function DateInvite() {
                 <span className="text-2xl">🌺</span>
                 <div>
                   <p className="text-xs uppercase tracking-widest mb-1" style={{ color: "#b07050" }}>
-                    Where
+                    Unde
                   </p>
                   <p className="text-sm font-medium" style={{ color: "#6a3828" }}>
                     {selectedPlace.name}
@@ -431,10 +430,10 @@ export default function DateInvite() {
                 <span className="text-2xl">🌼</span>
                 <div>
                   <p className="text-xs uppercase tracking-widest mb-1" style={{ color: "#b07050" }}>
-                    Dress code
+                    Ținută
                   </p>
                   <p className="text-sm font-medium" style={{ color: "#6a3828" }}>
-                    Something that makes you smile
+                    Ceva care te face să zâmbești
                   </p>
                 </div>
               </div>
