@@ -2,8 +2,16 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "O invitație specială 🌸",
-  description: "Ceva frumos, doar pentru tine",
+  title: "Invitatie de date cica",
+  description: "auzi tu nu mi accepta daca stia ca sunt din braila",
+  openGraph: {
+    title: "Invitatie de date cica",
+    description: "auzi tu nu mi accepta daca stia ca sunt din braila",
+  },
+  twitter: {
+    title: "Invitatie de date cica",
+    description: "auzi tu nu mi accepta daca stia ca sunt din braila",
+  },
 };
 
 export const viewport: Viewport = {
