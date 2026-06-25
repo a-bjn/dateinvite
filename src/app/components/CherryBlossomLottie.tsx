@@ -33,12 +33,12 @@ export default function CherryBlossomLottie() {
       {BLOSSOMS.map((blossom, i) => (
         <div
           key={i}
-          className="absolute"
+          className={`absolute ${i >= 4 ? "hidden sm:block" : ""}`}
           style={{
             top: blossom.top,
             left: blossom.left,
             right: blossom.right,
-            width: blossom.width,
+            width: `clamp(3.5rem, ${blossom.width}, 10rem)`,
             opacity: blossom.opacity,
           }}
         >

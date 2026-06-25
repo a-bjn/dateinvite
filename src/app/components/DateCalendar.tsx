@@ -71,10 +71,7 @@ export default function DateCalendar({
   return (
     <div className="w-full max-w-md animate-fade-in-up relative z-30">
       <div className="text-center mb-8">
-        <p className="text-sm uppercase tracking-[0.25em] mb-2" style={{ color: "#b07050" }}>
-          Pasul 1 din 2
-        </p>
-        <h2 className="text-3xl md:text-4xl font-light mb-2" style={{ color: "#7a4030" }}>
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-light mb-2 px-2" style={{ color: "#7a4030" }}>
           Alege o zi 🌸
         </h2>
         <p className="text-base font-light" style={{ color: "#a06050" }}>
@@ -82,7 +79,7 @@ export default function DateCalendar({
         </p>
       </div>
 
-      <div className="glass-card rounded-3xl p-6 md:p-8 relative z-10">
+      <div className="glass-card rounded-3xl p-4 sm:p-6 md:p-8 relative z-10">
         {/* Month navigation */}
         <div className="flex items-center justify-between mb-6">
           <button

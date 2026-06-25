@@ -86,10 +86,7 @@ export default function PlaceCards({ selectedPlace, onSelect, onContinue, onBack
       )}
 
       <div className="text-center mb-10">
-        <p className="text-sm uppercase tracking-[0.25em] mb-2" style={{ color: "#b07050" }}>
-          Pasul 2 din 2
-        </p>
-        <h2 className="text-3xl md:text-4xl font-light mb-2" style={{ color: "#7a4030" }}>
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-light mb-2 px-2" style={{ color: "#7a4030" }}>
           Unde mergem? 🌺
         </h2>
         <p className="text-base font-light" style={{ color: "#a06050" }}>
@@ -172,11 +169,11 @@ export default function PlaceCards({ selectedPlace, onSelect, onContinue, onBack
         })}
       </div>
 
-      <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-10">
+      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4 mt-10 px-2">
         <button
           type="button"
           onClick={onBack}
-          className="btn-no rounded-full px-10 py-3.5 text-sm tracking-wide w-44"
+          className="btn-no rounded-full px-10 py-3.5 text-sm tracking-wide w-full sm:w-44 min-h-[2.75rem]"
         >
           ← Înapoi
         </button>
@@ -187,7 +184,7 @@ export default function PlaceCards({ selectedPlace, onSelect, onContinue, onBack
             launchLetterConfetti({ count: 200 });
             onContinue();
           }}
-          className="btn-yes text-white rounded-full px-12 py-4 text-lg font-medium tracking-wide w-52 disabled:opacity-40 disabled:cursor-not-allowed"
+          className="btn-yes text-white rounded-full px-12 py-4 text-lg font-medium tracking-wide w-full sm:w-52 min-h-[3rem] disabled:opacity-40 disabled:cursor-not-allowed"
         >
           Confirmă 🌹
         </button>

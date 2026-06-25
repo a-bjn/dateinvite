@@ -63,6 +63,7 @@ export default function DateInvite() {
   const [petals, setPetals] = useState<Petal[]>([]);
   const [noPos, setNoPos] = useState({ x: 0, y: 0 });
   const [throwTrigger, setThrowTrigger] = useState(false);
+  const [flowerCount, setFlowerCount] = useState(42);
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
   const [selectedPlace, setSelectedPlace] = useState<Place | null>(null);
@@ -75,6 +76,7 @@ export default function DateInvite() {
   const petalIdRef = useRef(0);
 
   useEffect(() => {
+    setFlowerCount(window.innerWidth < 640 ? 18 : 42);
     setTimeout(() => setVisible((v) => ({ ...v, hero: true })), 200);
     setTimeout(() => setVisible((v) => ({ ...v, divider: true })), 800);
     setTimeout(() => setVisible((v) => ({ ...v, details: true })), 1100);
@@ -106,12 +108,14 @@ export default function DateInvite() {
   };
 
   const moveNoButton = () => {
-    const range = 160 + noCount * 18;
+    const isMobile = typeof window !== "undefined" && window.innerWidth < 640;
+    const range = (isMobile ? 90 : 160) + noCount * (isMobile ? 12 : 18);
     const angle = Math.random() * 2 * Math.PI;
-    setNoPos({
-      x: Math.cos(angle) * (70 + Math.random() * range),
-      y: Math.sin(angle) * (50 + Math.random() * range),
-    });
+    const maxX = isMobile ? Math.min(100, window.innerWidth * 0.28) : 200;
+    const maxY = isMobile ? Math.min(80, window.innerHeight * 0.12) : 150;
+    const x = Math.max(-maxX, Math.min(maxX, Math.cos(angle) * (50 + Math.random() * range)));
+    const y = Math.max(-maxY, Math.min(maxY, Math.sin(angle) * (40 + Math.random() * range)));
+    setNoPos({ x, y });
     setNoCount((c) => c + 1);
   };
 
@@ -136,14 +140,12 @@ export default function DateInvite() {
       }}
     >
       <CherryBlossomLottie />
-      {step === "invite" && <ThrowFlowers trigger={throwTrigger} count={42} />}
+      {step === "invite" && <ThrowFlowers trigger={throwTrigger} count={flowerCount} />}
       <FloatingBouquets />
 
       <div
-        className="pointer-events-none fixed"
+        className="pointer-events-none fixed w-[280px] h-[280px] sm:w-[400px] sm:h-[400px] md:w-[500px] md:h-[500px]"
         style={{
-          width: "500px",
-          height: "500px",
           borderRadius: "50%",
           background:
             "radial-gradient(circle, rgba(232,168,112,0.12) 0%, transparent 70%)",
@@ -153,10 +155,8 @@ export default function DateInvite() {
         }}
       />
       <div
-        className="pointer-events-none fixed"
+        className="pointer-events-none fixed w-[220px] h-[220px] sm:w-[320px] sm:h-[320px] md:w-[400px] md:h-[400px]"
         style={{
-          width: "400px",
-          height: "400px",
           borderRadius: "50%",
           background:
             "radial-gradient(circle, rgba(212,137,106,0.1) 0%, transparent 70%)",
@@ -182,7 +182,7 @@ export default function DateInvite() {
         </div>
       ))}
 
-      <main className="relative z-20 flex flex-col items-center justify-center min-h-screen px-6 py-20">
+      <main className="relative z-20 flex flex-col items-center justify-center min-h-[100dvh] px-4 sm:px-6 py-10 sm:py-16 md:py-20 pb-[max(2.5rem,env(safe-area-inset-bottom))]">
 
         {/* ── INVITE FLOW ── */}
         {showInviteLayout && (
@@ -197,13 +197,13 @@ export default function DateInvite() {
             >
               <HeroBlossom />
               <h1
-                className="text-5xl md:text-7xl font-light tracking-wide mb-4"
+                className="text-4xl sm:text-5xl md:text-7xl font-light tracking-wide mb-4"
                 style={{ color: "#7a4030", letterSpacing: "0.04em" }}
               >
                 Hei, <span className="shimmer-text font-normal">tu</span>
               </h1>
               <p
-                className="text-xl md:text-2xl font-light"
+                className="text-lg sm:text-xl md:text-2xl font-light"
                 style={{ color: "#a06050", letterSpacing: "0.05em" }}
               >
                 Am ceva să te întreb&nbsp;🌷
@@ -231,8 +231,7 @@ export default function DateInvite() {
               }}
             >
               <div
-                className="glass-card rounded-3xl px-8 py-10 text-center"
-                style={{ animation: "gentle-pulse 5s ease-in-out infinite" }}
+                className="glass-card gentle-pulse-card rounded-3xl px-5 sm:px-8 py-8 sm:py-10 text-center"
               >
                 <p
                   className="text-lg font-light mb-8"
@@ -282,7 +281,7 @@ export default function DateInvite() {
               }}
             >
               <p
-                className="text-2xl font-light mb-8"
+                className="text-xl sm:text-2xl font-light mb-8 px-2"
                 style={{ color: "#7a4030" }}
               >
                 {noCount === 0
@@ -290,18 +289,22 @@ export default function DateInvite() {
                   : noMessages[Math.min(noCount - 1, noMessages.length - 1)]}
               </p>
 
-              <div className="relative flex flex-col items-center gap-4">
+              <div className="relative flex flex-col items-center gap-4 w-full max-w-xs mx-auto">
                 <button
                   onClick={handleYes}
-                  className="btn-yes text-white rounded-full px-12 py-4 text-lg font-medium tracking-wide w-52"
+                  className="btn-yes text-white rounded-full px-12 py-4 text-lg font-medium tracking-wide w-full max-w-[13rem] min-h-[3rem]"
                 >
                   Da! 🌸
                 </button>
 
                 <button
                   onMouseEnter={moveNoButton}
+                  onTouchStart={(e) => {
+                    e.preventDefault();
+                    moveNoButton();
+                  }}
                   onClick={moveNoButton}
-                  className="btn-no rounded-full px-10 py-3.5 text-sm tracking-wide w-44"
+                  className="btn-no rounded-full px-10 py-3.5 text-sm tracking-wide w-full max-w-[11rem] min-h-[2.75rem]"
                   style={{
                     transform: `translate(${noPos.x}px, ${noPos.y}px)`,
                     transition:
@@ -315,7 +318,7 @@ export default function DateInvite() {
             </section>
 
             <footer
-              className="mt-20 flex gap-4 text-2xl"
+              className="mt-12 sm:mt-20 flex gap-3 sm:gap-4 text-xl sm:text-2xl"
               style={{
                 opacity: visible.invite ? 0.5 : 0,
                 transition: "opacity 1s ease 2s",
@@ -384,14 +387,14 @@ export default function DateInvite() {
             <div className="text-6xl mb-4" style={{ animation: "heartbeat 1.2s ease-in-out infinite" }}>
               🌹
             </div>
-            <h2 className="text-4xl font-light mb-3" style={{ color: "#7a3030" }}>
-              E o întâlnire!
+            <h2 className="text-3xl sm:text-4xl font-light mb-3 px-2 break-words" style={{ color: "#7a3030" }}>
+              It&apos;s a dateeee!!
             </h2>
             <p className="text-lg font-light mb-8" style={{ color: "#a06050" }}>
-              Sunt super încântat — ne vedem curând 🌸
+              See you soon!
             </p>
 
-            <div className="glass-card rounded-3xl px-8 py-8 text-left space-y-5">
+            <div className="glass-card rounded-3xl px-5 sm:px-8 py-6 sm:py-8 text-left space-y-5 w-full">
               <div className="flex items-start gap-4">
                 <span className="text-2xl">📅</span>
                 <div>
@@ -424,19 +427,6 @@ export default function DateInvite() {
                 </div>
               </div>
 
-              <div className="h-px" style={{ background: "rgba(212, 137, 106, 0.15)" }} />
-
-              <div className="flex items-start gap-4">
-                <span className="text-2xl">🌼</span>
-                <div>
-                  <p className="text-xs uppercase tracking-widest mb-1" style={{ color: "#b07050" }}>
-                    Ținută
-                  </p>
-                  <p className="text-sm font-medium" style={{ color: "#6a3828" }}>
-                    Ceva care te face să zâmbești
-                  </p>
-                </div>
-              </div>
             </div>
           </div>
           </div>

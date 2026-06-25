@@ -31,31 +31,17 @@ export default function FloatingBouquets() {
 
   return (
     <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-      {/* Left bouquet */}
       <img
         ref={bouquet1Ref}
         src="/bouquet.png"
         alt=""
-        className="absolute object-contain opacity-30 select-none"
-        style={{
-          width: "360px",
-          left: "-60px",
-          top: "50%",
-          transform: "translateY(-50%) rotate(15deg)",
-        }}
+        className="absolute object-contain opacity-20 sm:opacity-30 select-none w-[120px] sm:w-[220px] md:w-[360px] -left-8 sm:-left-12 md:-left-[60px] top-1/2 -translate-y-1/2 rotate-[15deg]"
       />
-      {/* Right bouquet */}
       <img
         ref={bouquet2Ref}
         src="/romantic-bouquet-pink-roses.png"
         alt=""
-        className="absolute object-contain opacity-30 select-none"
-        style={{
-          width: "400px",
-          right: "-60px",
-          top: "50%",
-          transform: "translateY(-50%) rotate(-15deg)",
-        }}
+        className="absolute object-contain opacity-20 sm:opacity-30 select-none w-[130px] sm:w-[240px] md:w-[400px] -right-8 sm:-right-12 md:-right-[60px] top-1/2 -translate-y-1/2 -rotate-[15deg]"
       />
     </div>
   );
